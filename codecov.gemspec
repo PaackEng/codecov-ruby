@@ -10,10 +10,10 @@ Gem::Specification.new do |s|
   s.license               = 'MIT'
   s.platform              = Gem::Platform::RUBY
   s.require_paths         = ['lib']
-  s.required_ruby_version = '>=2.4'
+  s.required_ruby_version = '>=2.2'
   s.summary               = 'hosted code coverage ruby/rails reporter'
   s.test_files            = ['test/test_codecov.rb']
-  s.version               = '0.2.11'
+  s.version               = '0.2.11-beta'
 
   s.add_dependency 'json'
   s.add_dependency 'simplecov'
