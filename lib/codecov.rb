@@ -396,8 +396,8 @@ class SimpleCov::Formatter::Codecov
       }
     )
     response = retry_request(req, https)
-    if !response&.code || response.code == '400'
-      puts red(response&.body)
+    if !response.try(:code) || response.code == '400'
+      puts red(response.try(:body))
       return false
     end
 
@@ -418,7 +418,7 @@ class SimpleCov::Formatter::Codecov
     )
     req.body = report
     res = retry_request(req, https)
-    if res&.body == ''
+    if res.try(:body) == ''
       {
         'uploaded' => true,
         'url' => reports_url,
@@ -429,7 +429,7 @@ class SimpleCov::Formatter::Codecov
       }.to_json
     else
       puts [black('-> '), 'Could not upload reports via v4 API, defaulting to v2'].join(' ')
-      puts red(res&.body || 'nil')
+      puts red(res.try(:body) || 'nil')
       nil
     end
   end
@@ -453,7 +453,7 @@ class SimpleCov::Formatter::Codecov
     )
     req.body = report
     res = retry_request(req, https)
-    res&.body
+    res.try(:body)
   end
 
   def handle_report_response(report)
